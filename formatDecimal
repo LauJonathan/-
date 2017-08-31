@@ -1,0 +1,38 @@
+// 字符串截断，非四舍五入，四舍五入易导致显示收益率值大于实际收益，实际用户查看收益发现与预期有差，
+// 则会引起投诉，因此需要把显示的保留位后舍去，实际得到会大于显示的，这可满足
+// is可选，true保留小数位，false直接截断，n为保留小数位数，data数值或字符串
+function exchange(data,n,is) {
+  var loopNum = function(num){
+    var temp = '';  
+    for(var i=0; i< num;++i){
+          temp += "0";
+    }
+    return temp;
+  }
+  var nlength = (n > 0 && n) || 2;
+  //var slength =  (is && nlength) || (nlength + 1)
+
+  if (!data || isNaN(+data)) {
+    data = '0';
+  }
+ 
+  is && (data = ((Math.round((+data)*Math.pow(10,nlength))/Math.pow(10,nlength)).toString()));
+   
+   var index = data.indexOf('.');
+   if(~index){
+      var cindex = data.substring(index + 1,data.length).length;
+      if (cindex < nlength){
+         data += loopNum(nlength - cindex);
+      }else if(cindex > nlength){
+         data = data.substr(0,index + 1 + nlength);
+      }else{
+         return data;
+      }
+      return data;
+   }else{
+     var initString = data + '.';
+     initString = initString + loopNum(nlength);
+     return initString;
+   }
+   
+}
