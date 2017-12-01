@@ -1,0 +1,105 @@
+function add(a, b) {
+    var c, d, e;
+    try {
+        c = a.toString().split(".")[1].length;
+    } catch (f) {
+        c = 0;
+    }
+    try {
+        d = b.toString().split(".")[1].length;
+    } catch (f) {
+        d = 0;
+    }
+    return e = Math.pow(10, Math.max(c, d)), (mul(a, e) + mul(b, e)) / e;
+}
+function sub(a, b) {
+    var c, d, e;
+    try {
+        c = a.toString().split(".")[1].length;
+    } catch (f) {
+        c = 0;
+    }
+    try {
+        d = b.toString().split(".")[1].length;
+    } catch (f) {
+        d = 0;
+    }
+    return e = Math.pow(10, Math.max(c, d)), (mul(a, e) - mul(b, e)) / e;
+}
+function mul(a, b) {
+    var c = 0,
+        d = a.toString(),
+        e = b.toString();
+    try {
+        c += d.split(".")[1].length;
+    } catch (f) {}
+    try {
+        c += e.split(".")[1].length;
+    } catch (f) {}
+    return Number(d.replace(".", "")) * Number(e.replace(".", "")) / Math.pow(10, c);
+}
+function div(a, b) {
+    var c, d, e = 0,
+        f = 0;
+    try {
+        e = a.toString().split(".")[1].length;
+    } catch (g) {}
+    try {
+        f = b.toString().split(".")[1].length;
+    } catch (g) {}
+    return c = Number(a.toString().replace(".", "")), d = Number(b.toString().replace(".", "")), mul(c / d, Math.pow(10, f - e));
+}
+
+
+
+// 见到小数化成整数，
+加法乘以小数位最多的倍数，然后用乘法用字符干掉小数点，计算出扩大的倍数处回两数倍数和
+减法与加法同理，
+乘法，小数换字符，扩大多少倍处以多少倍数和
+除法, 小数换字符，干掉小数点，，分子除以分母，乘回分母差分子的小数位数差的10次方
+
+
+
+---------------------
+add(0.1,0.2);
+0.3
+add(0.1,0.7);
+0.8
+add(0.2,0.4);
+0.6
+add(2.22,0.1);
+2.32
+sub(1.5,1.2);
+0.3
+mul(19.9,100);
+1990
+mul(1306377.64,100);
+130637764
+0.7*180
+125.99999999999999
+mul(0.7,180);
+126
+mul(9.7,180);
+1746
+mul(9.7,100);
+970
+mul(39.7,100);
+3970
+div(0.3,0.1);
+3
+div(0.69,10);
+0.069
+0.7 *100
+70
+1306377.64 * 100
+130637763.99999999
+'1306377.64' * 100
+130637763.99999999
+130637764 * 100 / 100
+130637764
+10 + 12
+22
+mul(8.8,12);
+105.6
+mul(8.80,12);
+105.6
